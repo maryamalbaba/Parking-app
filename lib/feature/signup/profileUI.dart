@@ -31,53 +31,77 @@ class profileUi extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SignupBloc(),
-      child: Builder(
-        builder: (context) {
-          return Scaffold(
-            appBar: AppBar(
-              leading: Icon(Icons.arrow_back_ios),
-              centerTitle: true,
-              title: Text("Profile"),
-            ),
-            body: Column(
-              children: [
-                TextFieldContainer(
-                  controller: username_controller,
-                  hinttext: " User name",
-                ),
-                TextFieldContainer(
-                  controller: birthDate_controller,
-                  hinttext: " BirthDate",
-                ),
-             
-             BlocBuilder<SignupBloc,SignupState>(builder: (context,state){ 
-              switch(state){
-                case SuccessSignup_state():return Container(width:200,height: 50,color: Colors.green,);
-                 case Erorr():return Container(width:200,height: 50,child: Text("erorrrrrrrrrrrr",style: TextStyle(color: Colors.red),),);
-                case SignupInitial():
-                        return ElevatedButton(
-                          onPressed: () {
-                            context.read<SignupBloc>().add(
-                                 Signedup(user: Signupmodel(firstName: firstname, lastName: Lastname, phone: phone, username: username_controller.text, birthDate: birthDate_controller.text, password: pass, confirmPassword: confirmpass)),
-
-                                );
-                                print(Signupmodel(firstName: firstname, lastName: Lastname, phone: phone, username: username_controller.text, birthDate: birthDate_controller.text, password: pass, confirmPassword: confirmpass));
-                          },
-                          child: const Text(
-                            "Send",
-                          ),
-                        );
-                default:
-                return const Center(
-                          child: CircularProgressIndicator(),);
-              }
-             })
-              ],
-            ),
-          );
-        }
-      ),
+      child: Builder(builder: (context) {
+        return Scaffold(
+          appBar: AppBar(
+            leading: Icon(Icons.arrow_back_ios),
+            centerTitle: true,
+            title: Text("Profile"),
+          ),
+          body: Column(
+            children: [
+              TextFieldContainer(
+                controller: username_controller,
+                hinttext: " User name",
+              ),
+              TextFieldContainer(
+                controller: birthDate_controller,
+                hinttext: " BirthDate",
+              ),
+              BlocBuilder<SignupBloc, SignupState>(builder: (context, state) {
+                switch (state) {
+                  case SuccessSignup_state():
+                    return Container(
+                      width: 200,
+                      height: 50,
+                      color: Colors.green,
+                    );
+                  case Erorr():
+                    return Container(
+                      width: 200,
+                      height: 50,
+                      child: Text(
+                        "erorrrrrrrrrrrr",
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    );
+                  case SignupInitial():
+                    return ElevatedButton(
+                      onPressed: () {
+                        context.read<SignupBloc>().add(
+                              Signedup(
+                                  user: Signupmodel(
+                                      firstName: firstname,
+                                      lastName: Lastname,
+                                      phone: phone,
+                                      username: username_controller.text,
+                                      birthDate: birthDate_controller.text,
+                                      password: pass,
+                                      confirmPassword: confirmpass)),
+                            );
+                        print(Signupmodel(
+                            firstName: firstname,
+                            lastName: Lastname,
+                            phone: phone,
+                            username: username_controller.text,
+                            birthDate: birthDate_controller.text,
+                            password: pass,
+                            confirmPassword: confirmpass));
+                      },
+                      child: const Text(
+                        "Send",
+                      ),
+                    );
+                  default:
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                }
+              })
+            ],
+          ),
+        );
+      }),
     );
-  
   }
 }

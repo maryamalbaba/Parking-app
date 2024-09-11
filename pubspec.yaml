@@ -39,6 +39,10 @@ dependencies:
   flutter_bloc: ^8.1.6
   dio: ^5.4.3+1
   mockito: ^5.4.4
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+  geolocator: ^11.1.0
+  google_maps_flutter: ^2.6.1
 
 dev_dependencies:
   flutter_test:

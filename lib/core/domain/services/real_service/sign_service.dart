@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:parkingapp/core/config/option.dart';
 import 'package:parkingapp/core/domain/models/Signup.dart';
 import 'package:parkingapp/core/domain/models/basic_model.dart';
 
@@ -6,18 +7,23 @@ class UserService {
 
 Future<ResultModel>sign_service(Signupmodel user) async{
   Dio dio=Dio();
-  String baseurl="";
+  //String baseurl="";
+  Response response;
 
 try{
-  Response response=await  dio.post(baseurl,data:user.toMap() );
+   response=await  dio.post("https://rideshare.devscape.online/api/v1/auth/register",data:user.toMap(),);
   if (response.statusCode==200) {
+    print("responsecode::${response.statusCode}");
+    print(response.data["body"]["token"]);
     return Successmodel();
     
   } else {
+    print(response.data["message"]);
      return ErrorModel();
   }
 }
 on DioException catch(e){
+   print("Exception massage is :${e.message}");
   return ExceptionModel();
 }
 }
