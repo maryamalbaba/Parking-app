@@ -18,12 +18,18 @@ class CategorisUi extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 child: GridView.builder(
+                  
                     itemCount: state.listsucses.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisSpacing:22,
+                      mainAxisSpacing: 22,
                         crossAxisCount: 2),
                     itemBuilder: (context, index) {
-                      return Container_Category(
-                        text: state.listsucses[index].body.toString(),
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container_Category(
+                          text: state.listsucses[index].body.toString(),
+                        ),
                       );
                     }),
               ),
@@ -44,10 +50,10 @@ class Container_Category extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: lightgreen),
+      decoration: BoxDecoration(color: lightgreen,borderRadius: BorderRadius.circular(15)),
       width: 160,
       height: 160,
-      child: Text(text),
+      child: Center(child: Text(text,style: TextStyle(fontSize: 17),)),
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:parkingapp/core/domain/models/Signup.dart';
 import 'package:parkingapp/core/domain/services/mock_service/mock_ser.dart';
 
 import 'package:parkingapp/core/resourses/components.dart';
+import 'package:parkingapp/feature/categories/bloc/CategoriesUi.dart';
 import 'package:parkingapp/feature/signup/Signup_Ui.dart';
 import 'package:parkingapp/feature/signup/bloc/signup_bloc.dart';
 
@@ -51,11 +52,7 @@ class profileUi extends StatelessWidget {
               BlocBuilder<SignupBloc, SignupState>(builder: (context, state) {
                 switch (state) {
                   case SuccessSignup_state():
-                    return Container(
-                      width: 200,
-                      height: 50,
-                      color: Colors.green,
-                    );
+                 return ElevatedButton(onPressed: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>CategorisUi()));}, child: Text("go on"));
                   case Erorr():
                     return Container(
                       width: 200,
